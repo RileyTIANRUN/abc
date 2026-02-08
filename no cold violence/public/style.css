@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #111;
+  color: #eee;
+  transition: background-color 2s ease;
+}
+
+/* 冷暴力阶段：整体气候变化 */
+body.cold-violence {
+  animation: coldPulse 6s ease-in-out infinite;
+}
+
+@keyframes coldPulse {
+  0%   { background-color: #111; }
+  50%  { background-color: #2a2a2a; }
+  100% { background-color: #111; }
+}
+
+.main-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+/* 标题 */
+#title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin: 4px 0 12px;
+  color: #ddd;
+}
+
+#nameWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+#nameWrapper input {
+  font-size: 16px;
+  padding: 8px;
+  background: #222;
+  border: 1px solid #444;
+  color: #eee;
+}
+
+#statusBar {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.status-item {
+  margin-bottom: 4px;
+}
+
+.breathing {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 0.9; }
+  100% { opacity: 0.4; }
+}
+
+#chatBox {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #333;
+  padding: 14px;
+  font-size: 18px;
+}
+
+.message {
+  margin-bottom: 12px;
+}
+
+.message.me {
+  text-align: right;
+  color: #fff;
+}
+
+.message.other {
+  text-align: left;
+  color: #ccc;
+}
+
+#inputArea {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+#messageInput {
+  flex: 1;
+  font-size: 18px;
+  padding: 14px;
+  background: #222;
+  border: 1px solid #444;
+  color: #eee;
+}
+
+#sendBtn {
+  font-size: 18px;
+  padding: 14px 20px;
+  background: #333;
+  border: none;
+  color: #eee;
+}

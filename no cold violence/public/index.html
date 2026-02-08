@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="manifest" href="manifest.json" />
+  <title>Silent Chat</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>eruda.init();</script>
+</head>
+
+<body>
+  <div class="main-wrapper">
+
+    <!-- 新增标题 -->
+    <h1 id="title">NO COLD VIOLENCE</h1>
+
+    <div id="nameWrapper">
+      <input id="usernameInput" type="text" placeholder="Your ID" />
+      <p>👈 your id</p>
+    </div>
+
+    <div id="statusBar"></div>
+
+    <div id="chatBox"></div>
+
+    <div id="inputArea">
+      <input id="messageInput" placeholder="Type something…" />
+      <button id="sendBtn">Send</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
