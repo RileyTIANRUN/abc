@@ -11,7 +11,6 @@ body {
   transition: background-color 2s ease;
 }
 
-/* 冷暴力阶段：整体气候变化 */
 body.cold-violence {
   animation: coldPulse 6s ease-in-out infinite;
 }
@@ -31,7 +30,6 @@ body.cold-violence {
   padding: 16px;
 }
 
-/* 标题 */
 #title {
   text-align: center;
   font-size: 22px;

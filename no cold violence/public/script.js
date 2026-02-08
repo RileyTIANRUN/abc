@@ -105,7 +105,6 @@ function renderStatus() {
     statusBar.appendChild(div);
   });
 
-  // ⭐ 核心：是否进入冷暴力气候
   document.body.classList.toggle("cold-violence", hasColdViolence);
 }
 
