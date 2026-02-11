@@ -1,5 +1,10 @@
-const socket = io();
-
+// let socket = io();
+// socket connection that works locally and on the server:
+if(location.hostname.toLowerCase().startsWith('browsercircus') || location.hostname.toLowerCase().startsWith('www')){
+  socket = io({path: "/riley/port-4300/socket.io"});  // e.g. '/riley/port-4300/socket.io' or '/socket.io'
+}else{
+  socket = io(); 
+}
 const usernameInput = document.getElementById("usernameInput");
 const messageInput = document.getElementById("messageInput");
 const sendBtn = document.getElementById("sendBtn");
@@ -83,14 +88,14 @@ function renderStatus() {
     let breathing = false;
 
     if (others[name].mode === "typing") {
-      if (elapsed > 20) {
+      if (elapsed > 10) {
         text = "is hesitating…";
         breathing = true;
       } else {
         text = "is typing…";
       }
     } else {
-      if (elapsed > 20) {
+      if (elapsed > 10) {
         text = "is giving you the silent treatment";
         hasColdViolence = true;
       } else {
