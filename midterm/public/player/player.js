@@ -1,4 +1,10 @@
-const socket = io()
+let socket;
+if(location.hostname.toLowerCase().startsWith('browsercircus') || location.hostname.toLowerCase().startsWith('www')){
+  socket = io({path: "/riley/port-4300/socket.io"});  // e.g. '/leon/port-4100/socket.io' or '/socket.io'
+}else{
+  socket = io(); 
+}
+
 
 let myRole = ""
 let mySelected = ""
@@ -37,16 +43,13 @@ socket.on("startGame", (data) => {
 
 })
 
-/* ================= 核心状态同步 (修复 Bug 的关键) ================= */
 
 socket.on("gameState", (data) => {
 
     currentStage = data.stage
     firstPlayer = data.firstPlayer
 
-    // 彻底修复：
-    // 后端 p1Change = 任何身份的先手在修改
-    // 后端 p2Change = 任何身份的后手在修改
+    
     const isMyChangeStage = (data.stage === "p1Change" && myRole === firstPlayer) || 
                             (data.stage === "p2Change" && myRole !== firstPlayer);
 
@@ -60,8 +63,6 @@ socket.on("gameState", (data) => {
 
     } else {
         
-        // 如果不是我的修改阶段，且当前不在初始选择阶段，则强制隐藏选择区
-        // 这解决了“修改权错位”导致的无限循环
         if (currentStage !== "select") {
             document.getElementById("selectArea").style.display = "none"
         }
@@ -86,14 +87,12 @@ function selectChoice(choice){
         .querySelectorAll("#selectArea button")
         .forEach(b=>b.classList.remove("active"))
 
-    // 使用 event.currentTarget 确保样式应用准确
     if(event && event.currentTarget) {
         event.currentTarget.classList.add("active")
     }
 
 }
 
-/* confirm 才真正提交选择 */
 
 function confirmChoice() {
 
@@ -102,20 +101,16 @@ function confirmChoice() {
         return
     }
 
-    // 发送手势给服务器
     socket.emit("select", mySelected)
 
-    // 发送确认信号推进阶段
     socket.emit("confirm")
 
-    // 视觉反馈：变为黑底白字
     document.getElementById("confirmBtn").classList.add("active")
 
     setTimeout(() => {
         document.getElementById("confirmBtn").style.display = "none"
         document.getElementById("confirmBtn").classList.remove("active")
         
-        // 确认后立即隐藏选择区，直到下一个允许修改的阶段
         document.getElementById("selectArea").style.display = "none"
     }, 200)
 }
