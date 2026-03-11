@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Player</title>
+
+<link rel="stylesheet" href="player.css">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>
+eruda.init();
+</script>
+
+</head>
+
+<body>
+
+<h2 id="role">Waiting...</h2>
+
+<h3 id="turnInfo"></h3>
+
+<h3 id="stage"></h3>
+
+<h3 id="score"></h3>
+
+<h3 id="timer">Time: <span id="countdown">20</span></h3>
+
+
+<!-- ================= SELECT AREA ================= -->
+
+<div id="selectArea" style="display:none">
+
+<button id="rockBtn" onclick="selectChoice('rock')">🤜</button>
+
+<button id="paperBtn" onclick="selectChoice('paper')">🫱</button>
+
+<button id="scissorsBtn" onclick="selectChoice('scissors')">✌️</button>
+
+<br><br>
+
+<button id="confirmBtn" onclick="confirmChoice()">Confirm</button>
+
+</div>
+
+
+
+<!-- ================= ACTION AREA ================= -->
+
+<div id="actionArea">
+
+<!-- 按钮由 player.js 动态生成 -->
+
+</div>
+
+
+
+<!-- ================= EMOJI STATUS ================= -->
+
+<div id="emojiStatus">
+
+<div id="p1status">
+Player1 :
+</div>
+
+<div id="p2status">
+Player2 :
+</div>
+
+</div>
+
+
+
+<!-- ================= EMOJI BUTTONS ================= -->
+
+<div id="emojiArea">
+
+<div id="emojiButtons">
+
+<button onclick="sendEmoji('🫣')">🫣</button>
+
+<button onclick="sendEmoji('💩')">💩</button>
+
+<button onclick="sendEmoji('👍')">👍</button>
+
+<button onclick="sendEmoji('🤝')">🤝</button>
+
+<button onclick="sendEmoji('☕️')">☕️</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= SCRIPTS ================= -->
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="player.js"></script>
+
+</body>
+
+</html>
