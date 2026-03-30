@@ -125,11 +125,11 @@ function updateTurn(){
 
     if(myRole === firstPlayer){
 
-        turnUI.innerText = "⭐ You are FIRST PLAYER"
+        turnUI.innerText = "You move first this term"
 
     }else{
 
-        turnUI.innerText = "🛡️ You are SECOND PLAYER"
+        turnUI.innerText = "You move later this term"
 
     }
 
@@ -151,17 +151,17 @@ socket.on("p1Turn", () => {
     // 只有当我的角色是服务器指定的 firstPlayer 时，才渲染操作按钮
     if (myRole === firstPlayer) {
 
-        document.getElementById("stage").innerText = "Stage: Your Turn (First Player)"
+        document.getElementById("stage").innerText = "Is your time to choose"
 
-        addActionButton("Peeping (+10/-10)", "peep")
+        addActionButton("Peeping your opponent's choice(+10/-10)", "peep")
 
-        addActionButton("Double (+20/-10)", "p1Double")
+        addActionButton("Double the point this term if you win(+20/-10)", "p1Double")
 
         addConfirmButton()
 
     } else {
 
-        document.getElementById("stage").innerText = "Stage: Waiting for First Player..."
+        document.getElementById("stage").innerText = "Stage: Waiting for your opponent..."
         
         // 非当前操作者清空动作区，防止误触
         clearActions()
@@ -172,9 +172,9 @@ socket.on("p1Turn", () => {
 
 socket.on("peekResult", (choice) => {
 
-    alert("🔍 INFILTRATION: Opponent currently has " + choice.toUpperCase())
+    alert("Your opponent currently has " + choice.toUpperCase())
 
-    document.getElementById("stage").innerText = "Action Result: Change hand or Confirm."
+    document.getElementById("stage").innerText = "You have a chance to change your choice."
 
 })
 
@@ -194,19 +194,19 @@ socket.on("p2Turn", () => {
     // 只有当我的角色不是 firstPlayer 时，才渲染后手操作按钮
     if (myRole !== firstPlayer) {
 
-        document.getElementById("stage").innerText = "Stage: Your Turn (Second Player)"
+        document.getElementById("stage").innerText = "Is your time to choose"
 
-        addActionButton("Check Peeping (+10/-10)", "checkPeeping")
+        addActionButton("Check if your oponent is Peeping (+10/-10)", "checkPeeping")
 
-        addActionButton("Check Lose (+10/-10)", "checkLose")
+        addActionButton("Check the result right now if you are losing (+10/-10)", "checkLose")
 
-        addActionButton("Double (+20/-10)", "p2Double")
+        addActionButton("Double the point this term if you win (+20/-10)", "p2Double")
 
         addConfirmButton()
 
     } else {
 
-        document.getElementById("stage").innerText = "Stage: Waiting for Second Player..."
+        document.getElementById("stage").innerText = "Stage: Waiting for your opponent"
         
         // 非当前操作者清空动作区
         clearActions()
@@ -217,13 +217,13 @@ socket.on("p2Turn", () => {
 
 socket.on("peepStatus", (status) => {
 
-    alert(status ? "🚨 WARNING: Your hand was PEEPED!" : "✅ SAFE: No one peeped your hand.")
+    alert(status ? "Your hand was PEEPED!" : "No one peeped your hand.")
 
 })
 
 socket.on("loseStatus", (lose) => {
 
-    alert(lose ? "📉 VULNERABLE: You are currently set to LOSE." : "🏆 SECURE: You are currently winning or draw.")
+    alert(lose ? "You are currently set to LOSE." : "You are currently Not Lose.")
 
 })
 
@@ -236,15 +236,15 @@ socket.on("finalStage", () => {
     selectedAction = ""
     actionLocked = false
 
-    document.getElementById("stage").innerText = "Stage: Negotiation"
+    document.getElementById("stage").innerText = "Last chance to Negotiation"
 
     clearActions()
 
     startTimer()
 
-    addActionButton("Propose Draw (+5/+5)", "proposeDraw")
+    addActionButton("Maybe draw this game? (+5/+5)", "proposeDraw")
 
-    addActionButton("Reveal", "reveal")
+    addActionButton("Show the result immidiatly", "reveal")
 
     addConfirmButton()
 
@@ -412,7 +412,7 @@ function addConfirmButton(){
 
         actionLocked = true
 
-        // 触控反馈
+        // 触控反馈c  c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
         e.currentTarget.classList.add("active")
 
         socket.emit(selectedAction)

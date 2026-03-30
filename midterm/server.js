@@ -27,10 +27,8 @@ let game = {};
 let revealAckCount = 0;
 let continueVotes = 0;
 
-/* 先手轮换 */
 let firstPlayer = "player1";
 
-/* emoji状态 */
 let emojiStatus = {
     player1: "",
     player2: ""
@@ -59,7 +57,6 @@ function broadcastState(){
         p1Double:game.p1Double,
         p2Double:game.p2Double,
 
-        /* 辅助前端显示：谁是当前的活跃操作者 */
         p1UsedPower: game.p1UsedPower,
         p2UsedPower: game.p2UsedPower
     });
