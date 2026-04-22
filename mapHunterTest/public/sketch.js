@@ -6,8 +6,6 @@ let currentLatitude = 0;
 let mapInit = false;
 let me;
 let socket;
-
-// 保持原有的 Socket 初始化逻辑
 if(location.hostname.toLowerCase().startsWith('browsercircus') || location.hostname.toLowerCase().startsWith('www')){
   socket = io({path: "/riley/port-4300/socket.io"}); 
 }else{
@@ -149,21 +147,15 @@ function draw() {
   }
 }
 
-// 兼容电脑鼠标和手机触摸
 function mousePressed() {
   if (!mapInit || !gameStarted || myRole !== "hunter") return;
-
-  // 使用 mouseX 和 mouseY，它们在所有设备上都代表点击位置
   let pos = myMap.pixelToLatLng(mouseX, mouseY);
-  
   socket.emit("placeCircle", { 
     latitude: pos.lat, 
     longitude: pos.lng 
   });
-
-  // 防止手机端双击缩放等干扰行为
   return false; 
-}
+}//将TOUCHED改成了MOUSEPRESSED
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
@@ -244,9 +236,9 @@ function drawHunterCircles() {
     }
   }
   
-  // 修改：实现猎物在圈内的红色闪烁预警
+  // 增加PRAY在圈内的红色闪烁预警
   if (myRole === "survivor" && amInCircle) {
-    let flashAlpha = map(sin(frameCount * 0.15), -1, 1, 40, 160); // 呼吸闪烁
+    let flashAlpha = map(sin(frameCount * 0.15), -1, 1, 40, 160); 
     fill(255, 0, 0, flashAlpha);
     noStroke();
     rect(0, 0, width, height);
@@ -304,14 +296,13 @@ class PlayerPoint {
       textAlign(CENTER);
       textSize(map(myMap.zoom(), 9, 18, 0, 11));
       let myScore = Math.floor(scores[this.isMe ? mySocketId : this.playerName] || 0);
-      // 修改：如果不是本人，playerName 存储的是 setName 发送的值
       let label = (this.isMe ? "You" : this.playerName) + " (" + (scores[this.isMe ? mySocketId : this.getIDfromName(this.playerName)] || 0) + ")";
       text(label, 0, -dia / 2 - 6);
       textAlign(LEFT);
     }
     pop();
   }
-  // 辅助函数：根据名字找分（简化版，直接显示分数为准）
+  // 根据名字找分（
   getIDfromName(name){
       for(let id in otherPlayers){ if(otherPlayers[id].name === name) return id; }
       return name;
@@ -330,17 +321,13 @@ function syncPlayerPoints() {
   playerPoints = nextPoints;
 }
 
-// 修改：结合 ID 输入功能的 Ready 逻辑
+//增加ID输入
 function toggleReady() {
   if (gameStarted) return;
   
   let inputField = document.getElementById("userNameInput");
   let chosenName = inputField ? inputField.value.trim() : "";
-  
-  // 1. 发送 ID 到服务器
   socket.emit("setName", chosenName || "Player_" + mySocketId.substring(0,4));
-  
-  // 2. 发送 Ready 信号
   isReady = true;
   socket.emit("ready");
   
@@ -367,7 +354,7 @@ function hideReadyButton() {
   if (btn) btn.style.display = "none";
 }
 
-// 新增：隐藏包含输入框的 UI 容器
+// 隐藏输入UI
 function hideUIOverlay() {
   let ui = document.getElementById("ui-overlay");
   if (ui) ui.style.display = "none";
