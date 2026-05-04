@@ -1,0 +1,277 @@
+{
+  "gameState": {
+    "fuelMinutes": 28.150350000000028,
+    "maxFuelMinutes": 120,
+    "lastCheckTime": 1777862382778,
+    "totalBurnedMinutes": 909.012616666672,
+    "historyLog": [
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 10:38."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 10:37."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 10:37."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 10:37."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 10:37."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 10:37."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 10:37."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 10:37."
+      },
+      {
+        "user": "riley",
+        "action": "went back to campfire at 10:37, brought 2 supplys back."
+      },
+      {
+        "user": "riley",
+        "action": "leave the campfire at 10:25."
+      },
+      {
+        "user": "riley",
+        "action": "used Magic Powder, something changed at 10:19."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 10:18."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 10:18."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 10:18."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 10:18."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 10:18."
+      },
+      {
+        "user": "riley",
+        "action": "went back to campfire at 10:18, brought 20 supplys back."
+      },
+      {
+        "user": "riley",
+        "action": "leave the campfire at 18:43."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:43."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:43."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:43."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:43."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:43."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:43."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:43."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:43."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "used Magic Powder, something changed at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "used Magic Powder, something changed at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "used Magic Powder, something changed at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "used Magic Powder, something changed at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "used Magic Powder, something changed at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "used Magic Powder, something changed at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "add a log into the campfire at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "add a stick into the campfire at 18:42."
+      },
+      {
+        "user": "riley",
+        "action": "went back to campfire at 18:42, brought 20 supplys back."
+      },
+      {
+        "user": "riley2",
+        "action": "leave the campfire at 11:47."
+      },
+      {
+        "user": "riley2",
+        "action": "used Magic Powder, something changed at 11:45."
+      },
+      {
+        "user": "riley2",
+        "action": "used Magic Powder, something changed at 11:45."
+      },
+      {
+        "user": "riley2",
+        "action": "used Magic Powder, something changed at 11:45."
+      },
+      {
+        "user": "riley2",
+        "action": "used Magic Powder, something changed at 11:45."
+      },
+      {
+        "user": "riley2",
+        "action": "used Magic Powder, something changed at 11:45."
+      },
+      {
+        "user": "riley2",
+        "action": "used Magic Powder, something changed at 11:45."
+      }
+    ],
+    "fireColor": "default"
+  },
+  "users": {
+    "riley": {
+      "inventory": {
+        "stick": 12,
+        "log": 2,
+        "special": 12
+      },
+      "lastSeen": 1777862249379
+    },
+    "Leon": {
+      "inventory": {
+        "stick": 0,
+        "log": 0,
+        "special": 4
+      },
+      "lastSeen": 1777433398417
+    },
+    "riley2": {
+      "inventory": {
+        "stick": 10,
+        "log": 11,
+        "special": 0
+      },
+      "lastSeen": 1777434441184
+    },
+    "Leo Wang": {
+      "inventory": {
+        "stick": 0,
+        "log": 0,
+        "special": 0
+      },
+      "lastSeen": 1777433234463
+    },
+    "sanjana": {
+      "inventory": {
+        "stick": 2,
+        "log": 3,
+        "special": 3
+      },
+      "lastSeen": 1777433913012
+    },
+    "Lisa": {
+      "inventory": {
+        "stick": 1,
+        "log": 4,
+        "special": 3
+      },
+      "lastSeen": 1777433894911
+    },
+    "TTT": {
+      "inventory": {
+        "stick": 0,
+        "log": 0,
+        "special": 0
+      },
+      "lastSeen": 1777434188647
+    },
+    "PPP": {
+      "inventory": {
+        "stick": 0,
+        "log": 0,
+        "special": 0
+      },
+      "lastSeen": 1777434325575
+    }
+  }
+}

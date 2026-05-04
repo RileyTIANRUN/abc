@@ -1,0 +1,175 @@
+/* 基础重置 */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body { 
+    background: #0a0a0f; 
+    font-family: 'Courier New', Courier, monospace; 
+    overflow: hidden;
+}
+
+#session-report {
+    position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #ff9600; padding: 15px 25px;
+    border: 1px solid #ff9600; border-radius: 4px;
+    z-index: 500; text-align: center; width: 80%;
+    box-shadow: 0 0 20px rgba(255, 150, 0, 0.3);
+}
+#session-report .val { color: #fff; font-weight: bold; }
+
+#top-info {
+    position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
+    text-align: center; color: rgba(255, 150, 0, 0.8); z-index: 10;
+}
+.time-val { font-weight: bold; color: #fff; }
+
+#message-log {
+    position: absolute; top: 100px; left: 20px; width: 250px;
+    color: #888; font-size: 11px; z-index: 5;
+}
+
+.ui-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 200;
+    align-items: center; justify-content: center;
+}
+
+.overlay-content {
+    position: relative;
+    width: 95%; max-width: 600px;
+    height: 80vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.book-bg { background-image: url('image/diary-log.png'); }
+.bag-bg { background-image: url('image/bag.png'); }
+
+.content-text {
+    width: 75%; 
+    height: 30%;           
+    overflow-y: auto;
+    padding: 20px;
+    color: #3e2723;        
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: -8%;       
+}
+
+
+#login-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.overlay-content {
+    text-align: center;
+    width: 100%;
+}
+
+
+.tap-to-enter {
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace; 
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    animation: pulse 2s infinite; 
+}
+
+@keyframes pulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
+
+#name-input {
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#start-btn {
+    padding: 10px 20px;
+    background: #fff;
+    color: #000;
+    border: none;
+    cursor: pointer;
+}
+
+
+#inventory-bar {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    width: 100%; max-width: 650px; padding: 0 10px; z-index: 300;
+}
+
+.center-group { display: flex; gap: 10px; }
+
+
+.right-group { display: flex; align-items: center; gap: 10px; }
+
+.slot {
+    background: rgba(15, 15, 20, 0.9);
+    padding: 8px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; flex-direction: column; align-items: center;
+    min-width: 75px; cursor: pointer; transition: 0.2s;
+}
+.slot.active { border-color: #ff9600; background: rgba(255, 150, 0, 0.1); }
+.slot .num { font-size: 18px; font-weight: bold; color: #ff9600; }
+.slot .label { font-size: 8px; color: #666; text-transform: uppercase; margin-top: 2px; }
+
+#slot-special .num {
+    color: #a066ff; 
+    text-shadow: 0 0 5px rgba(160, 102, 255, 0.5);
+}
+
+#slot-special.active {
+    border-color: #a066ff;
+    background: rgba(160, 102, 255, 0.1);
+}
+
+.item-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-bottom: 4px;
+}
+
+.side-btn {
+    background: #222; color: #aaa;
+    padding: 10px 12px; border-radius: 8px;
+    font-size: 10px; font-weight: bold;
+    cursor: pointer; border: 1px solid #444;
+    white-space: nowrap;
+}
+.side-btn:active { background: #ff9600; color: #000; }
+
+@media (max-width: 600px) {
+    #inventory-bar { bottom: 20px; gap: 6px; }
+    .slot { min-width: 60px; padding: 5px; }
+    .slot .num { font-size: 16px; }
+    .item-icon { width: 25px; height: 25px; }
+    .side-btn { padding: 8px 6px; font-size: 8px; }
+    .content-text { width: 85%; }
+}

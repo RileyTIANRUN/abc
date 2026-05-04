@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Eternal Campfire</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+
+<div id="login-overlay">
+    <div id="new-player-ui" class="overlay-content">
+        <input type="text" id="name-input" placeholder="Enter your name..." maxlength="10">
+        <button id="start-btn">BEGIN JOURNEY</button>
+    </div>
+
+    <div id="returning-player-ui" class="overlay-content" style="display: none;">
+        <div class="tap-to-enter">TAP ANY PLACES TO RETURN THE CAMP</div>
+    </div>
+</div>
+
+    <div id="session-report" style="display:none;">
+        You discovered <span id="session-mins" class="val">0</span> min，and brought <span id="session-items" class="val">0</span> items back.
+    </div>
+
+    <div id="top-info">
+        <div class="time-line">BURNED FOR: <span class="time-val" id="burned-val">0</span> MINS</div>
+        <div class="time-line">REMAINING: <span class="time-val" id="remain-val">0</span> MINS</div>
+    </div>
+
+    <div id="message-log"></div>
+
+    <div id="diary-overlay" class="ui-overlay">
+        <div class="overlay-content book-bg">
+            <div class="content-text" id="log-list">
+                </div>
+        </div>
+    </div>
+
+    <div id="backpack-overlay" class="ui-overlay">
+        <div class="overlay-content bag-bg">
+            <div class="content-text">
+                <h2 style="text-align:center; margin-bottom:10px; color:#fff;">BACKPACK</h2>
+                <div id="special-items-list" style="color:#ddd;">
+                    <p>Right now you have no special item...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="inventory-bar">
+        <div class="side-btn" onclick="toggleUI('diary')">DIARY LOG</div>
+
+        <div class="center-group">
+            <div class="slot active" id="slot-stick" onclick="setActive('stick')">
+                <img src="image/stick.png" class="item-icon" alt="stick"> <span class="num" id="inv-stick">0</span>
+                <span class="label">Stick</span>
+            </div>
+            <div class="slot" id="slot-log" onclick="setActive('log')">
+                <img src="image/log.png" class="item-icon" alt="log">
+                <span class="num" id="inv-log">0</span>
+                <span class="label">Log</span>
+            </div>
+        </div>
+
+        <div class="right-group">
+            <div class="slot" id="slot-special" onclick="setActive('special')">
+                <span class="num" id="inv-special">0</span>
+                <span class="label">Special</span>
+            </div>
+            <div class="side-btn" onclick="toggleUI('backpack')">BACKPACK</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
