@@ -2,7 +2,7 @@
   "gameState": {
     "fuelMinutes": 0,
     "maxFuelMinutes": 120,
-    "lastCheckTime": 1778019160441,
+    "lastCheckTime": 1778019310561,
     "totalBurnedMinutes": 1005.1629666666729,
     "historyLog": [
       {
