@@ -10,8 +10,8 @@ const options = {
     cert: fs.readFileSync("keys-for-local-https/localhost.pem"),
 };
 
-let HTTPSserver = https.createServer(options, app);
-const { Server } = require("socket.io");
+const HTTPSserver = https.createServer(options, app);
+const { Server } = require('socket.io');
 const io = new Server(HTTPSserver);
 const DATA_FILE = "camp_data.json";
 

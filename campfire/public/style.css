@@ -1,4 +1,3 @@
-/* 基础重置 */
 * {
     margin: 0; padding: 0; box-sizing: border-box;
     touch-action: manipulation;
@@ -11,10 +10,9 @@ body {
     background: #0a0a0f; 
     font-family: 'Courier New', Courier, monospace; 
     overflow: hidden;
-    cursor: default; /* 默认鼠标，p5.js 会在有道具时覆盖它 */
+    cursor: default; 
 }
 
-/* 顶部报告与信息 */
 #session-report {
     position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.9);
@@ -40,7 +38,7 @@ body {
     pointer-events: none;
 }
 
-/* UI 遮罩层通用 */
+
 .ui-overlay {
     display: none;
     position: fixed; inset: 0;
@@ -62,19 +60,18 @@ body {
 .book-bg { background-image: url('image/diary-log.png'); }
 .bag-bg { background-image: url('image/bag.png'); }
 
-/* 文本容器与自定义滚动条 */
+
 .content-text {
     width: 75%; 
-    height: 45%; /* 稍微增加高度以容纳土豆列表 */
+    height: 45%; 
     overflow-y: auto;
     padding: 15px;
-    color: #3e2723; /* 日记本颜色 */
+    color: #3e2723; 
     font-size: 14px;
     line-height: 1.5;
     margin-top: -5%;
 }
 
-/* 针对背包文本的特殊颜色处理 */
 .bag-bg .content-text {
     color: #eee;
     text-shadow: 1px 1px 2px #000;
@@ -83,7 +80,7 @@ body {
 .content-text::-webkit-scrollbar { width: 4px; }
 .content-text::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
 
-/* 背包物品列表样式 */
+
 .bag-row {
     display: flex;
     align-items: center;
@@ -145,7 +142,6 @@ body {
     cursor: pointer;
 }
 
-/* 底部物品栏 */
 #inventory-bar {
     position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
     display: flex; align-items: flex-end; justify-content: center; gap: 10px;
@@ -171,9 +167,9 @@ body {
     box-shadow: 0 0 15px rgba(255, 150, 0, 0.2);
 }
 
-/* 手持位特殊样式 */
+
 #slot-hand {
-    border-style: dashed; /* 虚线表示它是特殊位 */
+    border-style: dashed; 
     border-color: #666;
 }
 #slot-hand.active { border-style: solid; border-color: #00ffcc; background: rgba(0, 255, 204, 0.1); }
@@ -206,7 +202,6 @@ body {
 .side-btn:hover { border-color: #ff9600; color: #fff; }
 .side-btn:active { background: #ff9600; color: #000; }
 
-/* 响应式调整 */
 @media (max-width: 700px) {
     #inventory-bar { bottom: 15px; gap: 5px; flex-wrap: wrap; }
     .slot { min-width: 62px; padding: 6px; }
