@@ -7,24 +7,28 @@ const USERNAME_KEY = "campfire_username";
 let myUsername = localStorage.getItem(USERNAME_KEY);
 let fuelMinutes = 0;
 let totalBurned = 0;
-let inventory = { stick: 0, log: 0, special: 0 };
+let inventory = { stick: 0, log: 0, special: 0, potato: 0, cooked_potato: 0 };
 let activeItem = 'stick';
+let handItem = null;
 let currentFireColor = 'default';
 
 let stones = [];
 let flames = {};
 let sparks = [];
 let smokes = [];
+let floatingIcons = [];
 let burstTimer = 0;
 let isExtinguished = false;
 
-let sndCampfire;
+let sndCampfire, sndMagic, sndCook, sndEat, sndOuch;;
 let sndAmbients = [];
 let currentAmbient = null;
-let sndMagic;
+
+let imgStick, imgLog, imgSpecial, imgPotato, imgCookedPotato, imgHand;
 
 let campY; 
 let fireScale = 1.0;
+let cursorDispScale = 1.0;
 
 function preload() {
     sndCampfire = loadSound('sounds/campfire.wav');
@@ -35,6 +39,16 @@ function preload() {
         loadSound('sounds/wolf.wav')
     ];
     sndMagic = loadSound('sounds/magic.wav');
+    sndCook = loadSound('sounds/cook.wav');
+    sndEat = loadSound('sounds/eat.mp3');
+    sndOuch = loadSound('sounds/ouch.wav');
+
+    imgStick = loadImage('image/stick.png');
+    imgLog = loadImage('image/log.png');
+    imgSpecial = loadImage('image/special.png');
+    imgPotato = loadImage('image/potato.png');
+    imgCookedPotato = loadImage('image/cooked-potato.png');
+    imgHand = loadImage('image/hand.png');
 }
 
 function setup() {
@@ -80,7 +94,6 @@ function enterCamp() {
 
 function loginToServer() {
     socket.emit("userLogin", myUsername);
-    document.getElementById('message-log').innerText = "Connecting as " + myUsername + "...";
 }
 
 function scheduleNextAmbient() {
@@ -111,8 +124,6 @@ socket.on("initData", (data) => {
     totalBurned = data.totalBurnedMinutes;
     inventory = data.inventory;
     updateUI();
-    document.getElementById('message-log').innerText = "Welcome back, " + myUsername;
-    if (data.sessionReport) showSessionReport(data.sessionReport);
     if (data.historyLog) {
         const logList = document.getElementById('log-list');
         logList.innerHTML = ""; 
@@ -127,12 +138,8 @@ socket.on("updateLogUI", (logData) => {
 socket.on("syncFire", (data) => {
     fuelMinutes = data.fuelMinutes;
     totalBurned = data.totalBurnedMinutes;
-    if (data.fireColor) {
-        currentFireColor = data.fireColor;
-    }
-    if (data.playMagic && sndMagic) {
-        sndMagic.play();
-    }
+    if (data.fireColor) currentFireColor = data.fireColor;
+    if (data.playMagic && sndMagic) sndMagic.play();
     if (data.type) burstTimer = 90; 
 });
 
@@ -149,18 +156,6 @@ function appendLogToUI(log) {
     logList.insertBefore(entry, logList.firstChild);
 }
 
-function showSessionReport(report) {
-    if (report.minutes < 1) return; 
-    const reportDiv = document.getElementById('session-report');
-    document.getElementById('session-mins').innerText = report.minutes || 0;
-    document.getElementById('session-items').innerText = report.itemsFound || 0;
-    reportDiv.style.display = 'block';
-    setTimeout(() => {
-        reportDiv.style.opacity = '0';
-        setTimeout(() => { reportDiv.style.display = 'none'; reportDiv.style.opacity = '1'; }, 1000);
-    }, 8000);
-}
-
 function toggleUI(type) {
     const diary = document.getElementById('diary-overlay');
     const backpack = document.getElementById('backpack-overlay');
@@ -175,14 +170,59 @@ function toggleUI(type) {
 
 function setActive(type) {
     activeItem = type;
+    handItem = null;
     document.querySelectorAll('.slot').forEach(s => s.classList.remove('active'));
     document.getElementById('slot-' + type).classList.add('active');
+    updateHandButton();
 }
+
+function setHand(type) {
+    handItem = type;
+    activeItem = null;
+    document.querySelectorAll('.slot').forEach(s => s.classList.remove('active'));
+    updateHandButton();
+    toggleUI('backpack');
+}
+
+function updateHandButton() {
+    const btn = document.getElementById('slot-hand');
+    const imgElement = btn.querySelector('img');
+    const countElement = document.getElementById('hand-count');
+    
+    if (handItem === 'potato') {
+        imgElement.src = 'image/potato.png';
+        countElement.innerText = inventory.potato || 0;
+    } else if (handItem === 'cooked_potato') {
+        imgElement.src = 'image/cooked-potato.png';
+        countElement.innerText = inventory.cooked_potato || 0;
+    } else {
+        imgElement.src = 'image/hand.png';
+        countElement.innerText = "";
+    }
+}
+
 
 function updateUI() {
     document.getElementById('inv-stick').innerText = inventory.stick || 0;
     document.getElementById('inv-log').innerText = inventory.log || 0;
     document.getElementById('inv-special').innerText = inventory.special || 0;
+    
+    const potCount = inventory.potato || 0;
+    const cPotCount = inventory.cooked_potato || 0;
+    
+    const bagEmptyMsg = document.getElementById('bag-empty-msg');
+    const potatoList = document.getElementById('potato-list');
+    
+    if (potCount > 0 || cPotCount > 0) {
+        bagEmptyMsg.style.display = 'none';
+        potatoList.style.display = 'block';
+        document.getElementById('bag-potato-count').innerText = potCount;
+        document.getElementById('bag-cooked-count').innerText = cPotCount;
+    } else {
+        bagEmptyMsg.style.display = 'block';
+        potatoList.style.display = 'none';
+    }
+    updateHandButton();
 }
 
 function draw() {
@@ -190,6 +230,7 @@ function draw() {
     let fPerc = (fuelMinutes / 120) * 100;
     isExtinguished = (fPerc <= 0);
     updateParticles(fPerc);
+    
     push();
     translate(width / 2, campY);
     scale(fireScale);
@@ -197,13 +238,37 @@ function draw() {
     if (!isExtinguished && fPerc > 0.1) drawFireSystem(fPerc);
     drawStoneHalf(false);
     pop();
+
+    for (let i = floatingIcons.length - 1; i >= 0; i--) {
+        floatingIcons[i].update();
+        floatingIcons[i].display();
+        if (floatingIcons[i].isDead()) floatingIcons.splice(i, 1);
+    }
+
+    drawCustomCursor();
+
     document.getElementById('remain-val').innerText = floor(fuelMinutes);
     document.getElementById('burned-val').innerText = floor(totalBurned);
 }
 
-function calculateLayout() {
-    campY = height * 0.6;
-    fireScale = width < 600 ? width / 450 : 1.0;
+function drawCustomCursor() {
+    let img = null;
+    if (activeItem === 'stick') img = imgStick;
+    else if (activeItem === 'log') img = imgLog;
+    else if (activeItem === 'special') img = imgSpecial;
+    else if (handItem === 'potato') img = imgPotato;
+    else if (handItem === 'cooked_potato') img = imgCookedPotato;
+
+    if (img) {
+        cursorDispScale = lerp(cursorDispScale, 1.0, 0.2);
+        push();
+        imageMode(CENTER);
+        image(img, mouseX, mouseY, 40 * cursorDispScale, 40 * cursorDispScale);
+        pop();
+        noCursor();
+    } else {
+        cursor();
+    }
 }
 
 function touchStarted() {
@@ -212,17 +277,56 @@ function touchStarted() {
         document.getElementById('login-overlay').style.display === 'flex') {
         return;
     }
+    cursorDispScale = 1.25;
     if (mouseY < height * 0.75) {
-        if (activeItem === 'special') {
-            socket.emit('useSpecial', 'Magic Powder');
-        } else {
-            if (!isExtinguished) {
-                socket.emit('addFuel', activeItem);
-            } else if (dist(mouseX, mouseY, width/2, campY) < 100) {
-                socket.emit('addFuel', 'stick');
+        
+        if (!handItem && !activeItem) {
+            if (sndOuch) sndOuch.play();
+            return; 
+        }
+
+    
+        if (handItem === 'potato' && inventory.potato > 0) {
+            if (dist(mouseX, mouseY, width/2, campY) < 100 && !isExtinguished) {
+                sndCook.play(0, 1, 1, 0, 1);
+                socket.emit('cookPotato');
+                floatingIcons.push(new FloatingIcon(mouseX, mouseY, imgPotato));
+                return;
+            }
+        }
+
+       
+        if (handItem === 'cooked_potato' && inventory.cooked_potato > 0) {
+            sndEat.play();
+            socket.emit('eatPotato');
+            floatingIcons.push(new FloatingIcon(mouseX, mouseY, imgCookedPotato));
+            return;
+        }
+
+   
+        let imgToDraw = null;
+        if (activeItem === 'stick' && inventory.stick > 0) imgToDraw = imgStick;
+        if (activeItem === 'log' && inventory.log > 0) imgToDraw = imgLog;
+        if (activeItem === 'special' && inventory.special > 0) imgToDraw = imgSpecial;
+
+        if (imgToDraw) {
+            floatingIcons.push(new FloatingIcon(mouseX, mouseY, imgToDraw));
+            if (activeItem === 'special') {
+                socket.emit('useSpecial', 'Magic Powder');
+            } else {
+                if (!isExtinguished) {
+                    socket.emit('addFuel', activeItem);
+                } else if (dist(mouseX, mouseY, width/2, campY) < 100) {
+                    socket.emit('addFuel', 'stick');
+                }
             }
         }
     }
+}
+
+function calculateLayout() {
+    campY = height * 0.6;
+    fireScale = width < 600 ? width / 450 : 1.0;
 }
 
 function drawFireSystem(fPerc) {
@@ -342,6 +446,28 @@ class Spark {
         noStroke();
         fill(255, 230, 100, this.life);
         ellipse(this.pos.x, this.pos.y, random(1.5, 3) * fireScale);
+    }
+    isDead() { return this.life < 0; }
+}
+
+class FloatingIcon {
+    constructor(x, y, img) {
+        this.pos = createVector(x, y);
+        this.vel = createVector(0, -1.5);
+        this.life = 255;
+        this.img = img;
+        this.size = 60;
+    }
+    update() {
+        this.pos.add(this.vel);
+        this.life -= 4;
+    }
+    display() {
+        push();
+        imageMode(CENTER);
+        tint(255, this.life);
+        image(this.img, this.pos.x, this.pos.y, this.size, this.size);
+        pop();
     }
     isDead() { return this.life < 0; }
 }
