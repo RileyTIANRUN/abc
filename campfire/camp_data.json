@@ -1,9 +1,9 @@
 {
   "gameState": {
-    "fuelMinutes": 24.243400000000072,
+    "fuelMinutes": 16.5697833333334,
     "maxFuelMinutes": 120,
-    "lastCheckTime": 1778017298792,
-    "totalBurnedMinutes": 980.919566666673,
+    "lastCheckTime": 1778017759209,
+    "totalBurnedMinutes": 988.5931833333397,
     "historyLog": [
       {
         "user": "riley",
