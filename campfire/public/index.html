@@ -45,9 +45,7 @@
         <div class="overlay-content bag-bg">
             <div class="content-text">
                 <h2 style="text-align:center; margin-bottom:15px; color:#fff;">BACKPACK</h2>
-                
                 <p id="bag-empty-msg" style="text-align:center; color:#888;">Right now you have no special item...</p>
-                
                 <div id="potato-list" style="display:none;">
                     <div class="bag-row" onclick="setHand('potato')">
                         <img src="image/potato.png" class="bag-icon">
@@ -59,7 +57,6 @@
                         <span class="bag-label">Cooked Potato</span>
                         <span class="bag-num">x<span id="bag-cooked-count">0</span></span>
                     </div>
-                    <p style="font-size:12px; color:#aaa; text-align:center; margin-top:10px;">(Click item to hold in hand)</p>
                 </div>
             </div>
         </div>
@@ -67,7 +64,6 @@
 
     <div id="inventory-bar">
         <div class="side-btn" onclick="toggleUI('diary')">DIARY</div>
-
         <div class="center-group">
             <div class="slot active" id="slot-stick" onclick="setActive('stick')">
                 <img src="image/stick.png" class="item-icon">
@@ -80,24 +76,21 @@
                 <span class="label">Log</span>
             </div>
         </div>
-
         <div class="right-group">
             <div class="slot" id="slot-special" onclick="setActive('special')">
                 <img src="image/special.png" class="item-icon">
                 <span class="num" id="inv-special">0</span>
                 <span class="label">Special</span>
             </div>
-            
             <div class="slot" id="slot-hand">
                 <img src="image/hand.png" class="item-icon">
                 <span class="num" id="hand-count"></span>
                 <span class="label">Hand</span>
             </div>
-            
-
             <div class="side-btn" onclick="toggleUI('backpack')">BAG</div>
         </div>
     </div>
-        <script src="script.js"></script>
+    
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,223 +1,223 @@
 {
   "gameState": {
-    "fuelMinutes": 0,
+    "fuelMinutes": 93.95515000000022,
     "maxFuelMinutes": 120,
-    "lastCheckTime": 1778019770922,
-    "totalBurnedMinutes": 1005.1629666666729,
+    "lastCheckTime": 1778026739360,
+    "totalBurnedMinutes": 1088.704616666672,
     "historyLog": [
       {
         "user": "riley",
-        "action": "returned with 1 supplies and 1 potatoes at 05:30."
+        "action": "used Magic Powder at 08:06."
       },
       {
         "user": "riley",
-        "action": "used Magic Powder at 05:24."
+        "action": "added a stick into the fire at 08:06."
       },
       {
         "user": "riley",
-        "action": "added a stick into the fire at 05:24."
+        "action": "added a log into the fire at 08:06."
       },
       {
         "user": "riley",
-        "action": "added a stick into the fire at 05:23."
+        "action": "happily ate a hot potato at 07:50."
       },
       {
         "user": "riley",
-        "action": "added a log into the fire at 05:23."
+        "action": "happily ate a hot potato at 07:50."
       },
       {
         "user": "riley",
-        "action": "used Magic Powder at 05:23."
+        "action": "cooked a potato in the fire at 07:50."
       },
       {
         "user": "riley",
-        "action": "used Magic Powder at 05:23."
+        "action": "cooked a potato in the fire at 07:50."
       },
       {
         "user": "riley",
-        "action": "happily ate a hot potato at 05:23."
+        "action": "cooked a potato in the fire at 07:50."
       },
       {
         "user": "riley",
-        "action": "happily ate a hot potato at 05:23."
+        "action": "cooked a potato in the fire at 07:50."
       },
       {
         "user": "riley",
-        "action": "used Magic Powder at 05:23."
+        "action": "cooked a potato in the fire at 07:50."
       },
       {
         "user": "riley",
-        "action": "used Magic Powder at 05:23."
+        "action": "cooked a potato in the fire at 07:50."
       },
       {
         "user": "riley",
-        "action": "cooked a potato in the fire at 05:23."
+        "action": "used Magic Powder at 07:50."
       },
       {
         "user": "riley",
-        "action": "cooked a potato in the fire at 05:23."
+        "action": "used Magic Powder at 07:50."
       },
       {
         "user": "riley",
-        "action": "returned with 4 supplies and 2 potatoes at 05:23."
+        "action": "added a stick into the fire at 07:49."
       },
       {
         "user": "riley",
-        "action": "used Magic Powder at 05:01."
+        "action": "added a stick into the fire at 07:49."
+      },
+      {
+        "user": "test",
+        "action": "happily ate a hot potato at 07:47."
+      },
+      {
+        "user": "test",
+        "action": "cooked a potato in the fire at 07:47."
+      },
+      {
+        "user": "test",
+        "action": "used Magic Powder at 07:47."
       },
       {
         "user": "riley",
-        "action": "used Magic Powder at 05:01."
+        "action": "added a stick into the fire at 07:46."
       },
       {
         "user": "riley",
-        "action": "used Magic Powder at 05:01."
+        "action": "added a stick into the fire at 07:46."
+      },
+      {
+        "user": "test",
+        "action": "used Magic Powder at 07:39."
+      },
+      {
+        "user": "test",
+        "action": "used Magic Powder at 07:39."
+      },
+      {
+        "user": "test",
+        "action": "used Magic Powder at 07:39."
+      },
+      {
+        "user": "test",
+        "action": "used Magic Powder at 07:39."
+      },
+      {
+        "user": "test",
+        "action": "added a log into the fire at 07:37."
+      },
+      {
+        "user": "test",
+        "action": "added a log into the fire at 07:37."
+      },
+      {
+        "user": "test",
+        "action": "added a log into the fire at 07:37."
+      },
+      {
+        "user": "test",
+        "action": "added a log into the fire at 07:36."
+      },
+      {
+        "user": "test",
+        "action": "added a log into the fire at 07:36."
+      },
+      {
+        "user": "test",
+        "action": "added a stick into the fire at 07:36."
+      },
+      {
+        "user": "test",
+        "action": "added a stick into the fire at 07:36."
+      },
+      {
+        "user": "test",
+        "action": "added a stick into the fire at 07:36."
+      },
+      {
+        "user": "test",
+        "action": "added a stick into the fire at 07:36."
+      },
+      {
+        "user": "test",
+        "action": "added a stick into the fire at 07:36."
+      },
+      {
+        "user": "test",
+        "action": "visited the camp at 07:36."
       },
       {
         "user": "riley",
-        "action": "added a log into the fire at 05:01."
+        "action": "returned with 4 supplies and 2 potatoes at 07:34."
       },
       {
         "user": "riley",
-        "action": "added a log into the fire at 05:00."
+        "action": "added a log into the fire at 07:14."
       },
       {
         "user": "riley",
-        "action": "added a stick into the fire at 05:00."
+        "action": "added a log into the fire at 07:14."
       },
       {
         "user": "riley",
-        "action": "happily ate a hot potato at 05:00."
+        "action": "added a log into the fire at 07:14."
       },
       {
         "user": "riley",
-        "action": "happily ate a hot potato at 05:00."
+        "action": "added a log into the fire at 07:14."
       },
       {
         "user": "riley",
-        "action": "happily ate a hot potato at 05:00."
+        "action": "added a log into the fire at 07:14."
       },
       {
         "user": "riley",
-        "action": "happily ate a hot potato at 05:00."
+        "action": "added a log into the fire at 07:14."
       },
       {
         "user": "riley",
-        "action": "happily ate a hot potato at 05:00."
+        "action": "used Magic Powder at 07:14."
       },
       {
         "user": "riley",
-        "action": "cooked a potato in the fire at 05:00."
+        "action": "used Magic Powder at 07:14."
       },
       {
         "user": "riley",
-        "action": "cooked a potato in the fire at 05:00."
+        "action": "added a stick into the fire at 07:14."
       },
       {
         "user": "riley",
-        "action": "cooked a potato in the fire at 05:00."
+        "action": "returned with 0 supplies and 0 potatoes at 07:14."
       },
       {
         "user": "riley",
-        "action": "cooked a potato in the fire at 05:00."
+        "action": "added a log into the fire at 07:11."
       },
       {
         "user": "riley",
-        "action": "cooked a potato in the fire at 05:00."
+        "action": "added a stick into the fire at 07:11."
       },
       {
         "user": "riley",
-        "action": "used Magic Powder at 05:00."
+        "action": "added a stick into the fire at 07:11."
       },
       {
         "user": "riley",
-        "action": "used Magic Powder at 05:00."
-      },
-      {
-        "user": "riley",
-        "action": "added a log into the fire at 05:00."
-      },
-      {
-        "user": "riley",
-        "action": "added a log into the fire at 05:00."
-      },
-      {
-        "user": "riley",
-        "action": "added a log into the fire at 04:59."
-      },
-      {
-        "user": "riley",
-        "action": "added a stick into the fire at 04:59."
-      },
-      {
-        "user": "riley",
-        "action": "added a stick into the fire at 04:59."
-      },
-      {
-        "user": "riley",
-        "action": "added a stick into the fire at 04:59."
-      },
-      {
-        "user": "riley",
-        "action": "returned with 6 supplies and 5 potatoes at 04:59."
-      },
-      {
-        "user": "riley",
-        "action": "add a stick into the campfire at 04:27."
-      },
-      {
-        "user": "riley",
-        "action": "add a stick into the campfire at 04:27."
-      },
-      {
-        "user": "riley",
-        "action": "used Magic Powder, something changed at 04:27."
-      },
-      {
-        "user": "riley",
-        "action": "went back to campfire at 04:27, brought 20 supplys back."
-      },
-      {
-        "user": "riley",
-        "action": "add a stick into the campfire at 10:38."
-      },
-      {
-        "user": "riley",
-        "action": "add a stick into the campfire at 10:37."
-      },
-      {
-        "user": "riley",
-        "action": "add a stick into the campfire at 10:37."
-      },
-      {
-        "user": "riley",
-        "action": "add a stick into the campfire at 10:37."
-      },
-      {
-        "user": "riley",
-        "action": "add a stick into the campfire at 10:37."
-      },
-      {
-        "user": "riley",
-        "action": "add a stick into the campfire at 10:37."
-      },
-      {
-        "user": "riley",
-        "action": "add a stick into the campfire at 10:37."
+        "action": "added a stick into the fire at 07:11."
       }
     ],
-    "fireColor": "purple"
+    "fireColor": "default"
   },
   "users": {
     "riley": {
       "inventory": {
-        "stick": 9,
-        "log": 7,
+        "stick": 0,
+        "log": 0,
         "special": 16,
-        "potato": 1,
-        "cooked_potato": 0
+        "potato": 3,
+        "cooked_potato": 4
       },
-      "lastSeen": 1778018253997
+      "lastSeen": 1778026010710
     },
     "Leon": {
       "inventory": {
@@ -274,6 +274,16 @@
         "special": 0
       },
       "lastSeen": 1777434325575
+    },
+    "test": {
+      "inventory": {
+        "stick": 0,
+        "log": 0,
+        "special": 0,
+        "potato": 0,
+        "cooked_potato": 0
+      },
+      "lastSeen": 1778025630207
     }
   }
 }

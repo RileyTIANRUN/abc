@@ -26,9 +26,10 @@ let currentAmbient = null;
 
 let imgStick, imgLog, imgSpecial, imgPotato, imgCookedPotato, imgHand;
 
-let campY; 
+let campY = 0; 
 let fireScale = 1.0;
 let cursorDispScale = 1.0;
+let lastTouchTime = 0;
 
 function preload() {
     sndCampfire = loadSound('sounds/campfire.wav');
@@ -272,6 +273,10 @@ function drawCustomCursor() {
 }
 
 function touchStarted() {
+    let now = millis();
+    if (now - lastTouchTime < 300) return false;
+    lastTouchTime = now;
+
     if (document.getElementById('diary-overlay').style.display === 'flex' || 
         document.getElementById('backpack-overlay').style.display === 'flex' ||
         document.getElementById('login-overlay').style.display === 'flex') {
@@ -381,7 +386,7 @@ function drawLayer(w, h, col) {
     fill(col); noStroke();
     beginShape();
     vertex(-w * 0.5, 5); 
-    for (let x = -w * 0.5; x <= w * 0.5; x += w * 0.05) {
+    for (let x = -w * 0.5; x <= w * 0.5; x += w * 0.1) { 
         let index = floor(map(x, -w*0.5, w*0.5, -150, 150));
         let n = flames[index] || 1; 
         let shapeK = 1 - pow(abs(x) / (w * 0.5), 2.2); 
@@ -393,21 +398,23 @@ function drawLayer(w, h, col) {
     endShape(CLOSE);
 }
 
+
+
 function updateParticles(fPerc) {
-    let smokeChance = isExtinguished ? 0.3 : map(fPerc, 0, 100, 0.1, 0.6);
-    if (random(1) < smokeChance) {
+    let smokeChance = isExtinguished ? 0.2 : map(fPerc, 0, 100, 0.05, 0.3);
+    if (random(1) < smokeChance && smokes.length < 100) {
         let sY = campY - (isExtinguished ? 20 : map(fPerc, 0, 100, 20, 200) * 0.7);
-        smokes.push(new Smoke(width/2 + random(-20,20), sY));
+        smokes.push(new Smoke(width/2 + random(-20, 20), sY));
     }
-    let sparkChance = burstTimer > 0 ? 0.8 : 0.1;
-    if (random(1) < sparkChance && !isExtinguished && fPerc > 10) {
-        sparks.push(new Spark(width/2 + random(-15,15), campY - 50));
+    let sparkChance = burstTimer > 0 ? 0.5 : 0.05;
+    if (random(1) < sparkChance && !isExtinguished && fPerc > 10 && sparks.length < 40) {
+        sparks.push(new Spark(width/2 + random(-15, 15), campY - 50));
     }
-    for (let i = smokes.length-1; i>=0; i--) {
+    for (let i = smokes.length - 1; i >= 0; i--) {
         smokes[i].update(); smokes[i].display();
         if (smokes[i].isDead()) smokes.splice(i, 1);
     }
-    for (let i = sparks.length-1; i>=0; i--) {
+    for (let i = sparks.length - 1; i >= 0; i--) {
         sparks[i].update(); sparks[i].display();
         if (sparks[i].isDead()) sparks.splice(i, 1);
     }
