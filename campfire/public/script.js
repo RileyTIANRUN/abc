@@ -33,17 +33,7 @@ let lastTouchTime = 0;
 
 function preload() {
     sndCampfire = loadSound('sounds/campfire.wav');
-    sndAmbients = [
-        loadSound('sounds/environment1.wav'),
-        loadSound('sounds/environment2.wav'),
-        loadSound('sounds/wind.wav'),
-        loadSound('sounds/wolf.wav')
-    ];
-    sndMagic = loadSound('sounds/magic.wav');
-    sndCook = loadSound('sounds/cook.wav');
-    sndEat = loadSound('sounds/eat.mp3');
-    sndOuch = loadSound('sounds/ouch.wav');
-
+   
     imgStick = loadImage('image/stick.png');
     imgLog = loadImage('image/log.png');
     imgSpecial = loadImage('image/special.png');
@@ -85,12 +75,30 @@ function setup() {
 
 function enterCamp() {
     document.getElementById('login-overlay').style.display = 'none';
+
     userStartAudio().then(() => {
-        sndCampfire.loop();
-        sndCampfire.setVolume(0.5);
-        scheduleNextAmbient();
+        if (sndCampfire && sndCampfire.isLoaded()) {
+            sndCampfire.loop();
+            sndCampfire.setVolume(0.5);
+        }
+        loadRemainingSounds();
         loginToServer();
+        scheduleNextAmbient();
     });
+}
+
+function loadRemainingSounds() {
+    console.log("Starting background loading for heavy assets...");
+    sndMagic = loadSound('sounds/magic.wav');
+    sndCook = loadSound('sounds/cook.wav');
+    sndEat = loadSound('sounds/eat.mp3');
+    sndOuch = loadSound('sounds/ouch.wav');
+    sndAmbients = [
+        loadSound('sounds/environment1.wav'),
+        loadSound('sounds/environment2.wav'),
+        loadSound('sounds/wind.wav'),
+        loadSound('sounds/wolf.wav')
+    ];
 }
 
 function loginToServer() {
